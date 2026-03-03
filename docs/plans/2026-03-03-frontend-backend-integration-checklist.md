@@ -2,56 +2,56 @@
 
 ## 1. Global
 
-- [ ] CORS allowlist includes frontend dev origins (`http://localhost:5173`, `http://127.0.0.1:5173`)
+- [x] CORS allowlist includes frontend dev origins (`http://localhost:5173`, `http://127.0.0.1:5173`)
 - [ ] Unified API prefix (`/api/v1` or current project standard)
-- [ ] Error envelope format agreed (`code`, `message`, `details`)
-- [ ] Date/time fields use ISO 8601 in UTC
+- [x] Error envelope format agreed (`code`, `message`, `details`)
+- [x] Date/time fields use ISO 8601 in UTC
 
 ## 2. Dashboard
 
-- [ ] `GET /countdown/active` returns `{ id, name, target_date, days_left }`
-- [ ] `GET /review/summary` returns `{ due_today, overdue }`
+- [x] `GET /countdown/active` returns `{ id, name, target_date, days_left }`
+- [x] `GET /review/summary` returns `{ due_today, overdue }`
 
 ## 3. Questions
 
-- [ ] `GET /questions` supports filters: `year`, `source`, `category`, `sub_type`
-- [ ] `POST /questions` creates question with `word_limit`, `score`, `prompt`, `material_text`
-- [ ] `PUT /questions/{id}` updates question fields
-- [ ] `DELETE /questions/{id}` soft delete or hard delete behavior clarified
+- [x] `GET /questions` supports filters: `year`, `source`, `category`, `sub_type`
+- [x] `POST /questions` creates question with `word_limit`, `score`, `prompt`, `material_text`
+- [x] `PUT /questions/{id}` updates question fields
+- [x] `DELETE /questions/{id}` soft delete or hard delete behavior clarified
 
 ## 4. Exam Simulation / Targeted Practice
 
-- [ ] `GET /exams` returns papers with question summaries
-- [ ] `GET /exams/{id}` returns full material + ordered questions
-- [ ] `POST /exam-sessions` creates simulation session
-- [ ] `POST /answers` saves answer content, mode, and time spent
+- [x] `GET /exams` returns papers with question summaries
+- [x] `GET /exams/{id}` returns full material + ordered questions
+- [x] `POST /exam-sessions` creates simulation session
+- [x] `POST /answers` saves answer content, mode, and time spent
 
 ## 5. Review Center
 
-- [ ] `GET /review/items?due=today|overdue`
-- [ ] `POST /review/items/{id}/grade` accepts self-grade (1-5) and updates schedule
+- [x] `GET /review/items?due=today|overdue`
+- [x] `POST /review/items/{id}/grade` accepts self-grade (1-5) and updates schedule
 
 ## 6. Notes
 
-- [ ] `GET /notes` list endpoint
-- [ ] `POST /notes` create endpoint
-- [ ] `PUT /notes/{id}` update endpoint
-- [ ] `DELETE /notes/{id}` delete endpoint
+- [x] `GET /notes` list endpoint
+- [x] `POST /notes` create endpoint
+- [x] `PUT /notes/{id}` update endpoint
+- [x] `DELETE /notes/{id}` delete endpoint
 
 ## 7. Statistics
 
-- [ ] `GET /stats/overview` returns totals used by cards
-- [ ] `GET /stats/weekly-trend` returns weekly points array
+- [x] `GET /stats/overview` returns totals used by cards
+- [x] `GET /stats/weekly-trend` returns weekly points array
 
 ## 8. Settings / Backup
 
-- [ ] `GET /countdown` and `POST /countdown` for countdown management
-- [ ] `POST /backup/manual` triggers backup and returns status
+- [x] `GET /countdown` and `POST /countdown` for countdown management
+- [x] `POST /backup/manual` triggers backup and returns status
 
 ## 9. Contract Mapping
 
-- [ ] Backend snake_case fields mapped to frontend camelCase in repository adapters
-- [ ] Nullability for optional fields documented and handled in UI
+- [x] Backend snake_case fields mapped to frontend camelCase in repository adapters
+- [x] Nullability for optional fields documented and handled in UI
 - [ ] Pagination strategy agreed (`page` + `page_size` or cursor)
 
 ## 10. Integration Validation Commands
