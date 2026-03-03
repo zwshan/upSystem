@@ -148,3 +148,16 @@ class NoteRead(BaseModel):
     tags: list[str]
     created_at: datetime
     updated_at: datetime
+
+
+class CountdownCreate(BaseModel):
+    name: str
+    target_date: str
+    is_active: bool = False
+
+
+class CountdownRead(BaseModel):
+    id: int
+    name: str
+    target_date: str
+    is_active: bool

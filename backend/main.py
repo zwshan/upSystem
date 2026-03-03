@@ -9,7 +9,7 @@ from core.errors import (
     validation_exception_handler,
 )
 from database import Base, engine
-from routers import answers, countdown, exams, notes, questions, review, stats
+from routers import answers, backup, countdown, exams, notes, questions, review, stats
 
 app = FastAPI(title='upSystem Backend')
 
@@ -34,6 +34,7 @@ app.include_router(exams.router)
 app.include_router(answers.router)
 app.include_router(notes.router)
 app.include_router(stats.router)
+app.include_router(backup.router)
 
 
 @app.get('/api/v1/health')
