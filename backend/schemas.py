@@ -52,3 +52,64 @@ class QuestionRead(BaseModel):
     score: int
     material_text: str | None
     order_num: int
+
+
+class ExamQuestionRead(BaseModel):
+    id: int
+    category: str
+    sub_type: str | None
+    prompt: str
+    word_limit: int
+    score: int
+    order_num: int
+
+
+class ExamListItem(BaseModel):
+    id: int
+    title: str
+    year: int
+    source: str
+    total_time_minutes: int
+    question_count: int
+
+
+class ExamDetail(BaseModel):
+    id: int
+    title: str
+    year: int
+    source: str
+    total_time_minutes: int
+    material_text: str
+    questions: list[ExamQuestionRead]
+
+
+class ExamSessionCreate(BaseModel):
+    exam_id: int
+
+
+class ExamSessionRead(BaseModel):
+    id: int
+    exam_id: int
+    total_time_spent: int
+    status: str
+
+
+class AnswerCreate(BaseModel):
+    question_id: int
+    exam_session_id: int | None = None
+    content: str
+    time_spent_seconds: int
+    mode: str
+    self_score: float | None = None
+    reflection: str | None = None
+
+
+class AnswerRead(BaseModel):
+    id: int
+    question_id: int
+    exam_session_id: int | None
+    content: str
+    time_spent_seconds: int
+    mode: str
+    self_score: float | None
+    reflection: str | None
