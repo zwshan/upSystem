@@ -1,10 +1,11 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import { getExamPapersMock, type ExamPaper } from '@/repositories/mock/exam.mock'
+import type { ExamPaper } from '@/domain/types'
+import { getRepositories } from '@/repositories/factory'
 
 export const useExamStore = defineStore('exam', () => {
-  const papers = ref<ExamPaper[]>(getExamPapersMock())
+  const papers = ref<ExamPaper[]>(getRepositories().exam.getPapers())
   const activePaperId = ref<number>(papers.value[0]?.id ?? 0)
   const inSession = ref(false)
   const sessionMode = ref<'simulation' | 'targeted'>('simulation')

@@ -1,11 +1,7 @@
 import { defineStore } from 'pinia'
 
-import {
-  getActiveCountdownMock,
-  getReviewSummaryMock,
-  type CountdownSummary,
-  type ReviewSummary,
-} from '@/repositories/mock/dashboard.mock'
+import type { CountdownSummary, ReviewSummary } from '@/domain/types'
+import { getRepositories } from '@/repositories/factory'
 
 interface DashboardState {
   countdown: CountdownSummary
@@ -14,7 +10,7 @@ interface DashboardState {
 
 export const useDashboardStore = defineStore('dashboard', {
   state: (): DashboardState => ({
-    countdown: getActiveCountdownMock(),
-    review: getReviewSummaryMock(),
+    countdown: getRepositories().dashboard.getActiveCountdown(),
+    review: getRepositories().dashboard.getReviewSummary(),
   }),
 })

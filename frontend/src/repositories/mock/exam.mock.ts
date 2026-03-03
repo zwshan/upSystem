@@ -1,17 +1,4 @@
-export type ExamQuestion = {
-  id: number
-  category: string
-  prompt: string
-  wordLimit: number
-}
-
-export type ExamPaper = {
-  id: number
-  title: string
-  year: number
-  totalTimeMinutes: number
-  questions: ExamQuestion[]
-}
+import type { ExamPaper } from '@/domain/types'
 
 const papers: ExamPaper[] = [
   {

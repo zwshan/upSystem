@@ -1,14 +1,4 @@
-export type CountdownSummary = {
-  id: number
-  name: string
-  targetDate: string
-  daysLeft: number
-}
-
-export type ReviewSummary = {
-  dueToday: number
-  overdue: number
-}
+import type { CountdownSummary, ReviewSummary } from '@/domain/types'
 
 export function getActiveCountdownMock(): CountdownSummary {
   return {

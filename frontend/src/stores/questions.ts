@@ -1,10 +1,11 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import { getQuestionsMock, type QuestionItem } from '@/repositories/mock/questions.mock'
+import type { QuestionItem } from '@/domain/types'
+import { getRepositories } from '@/repositories/factory'
 
 export const useQuestionsStore = defineStore('questions', () => {
-  const questions = ref<QuestionItem[]>(getQuestionsMock())
+  const questions = ref<QuestionItem[]>(getRepositories().questions.getQuestions())
   const categoryFilter = ref<string>('全部')
   const drawerOpen = ref(false)
   const activeQuestion = ref<QuestionItem | null>(null)

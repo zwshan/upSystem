@@ -1,13 +1,4 @@
-export type QuestionItem = {
-  id: number
-  year: number
-  source: string
-  category: string
-  subType: string
-  wordLimit: number
-  score: number
-  prompt: string
-}
+import type { QuestionItem } from '@/domain/types'
 
 const questionBank: QuestionItem[] = [
   {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { QuestionItem } from '@/repositories/mock/questions.mock'
+import type { QuestionItem } from '@/domain/types'
 
 const props = defineProps<{
   items: QuestionItem[]

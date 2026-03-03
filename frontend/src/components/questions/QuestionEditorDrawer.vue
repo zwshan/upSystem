@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { QuestionItem } from '@/repositories/mock/questions.mock'
+import type { QuestionItem } from '@/domain/types'
 
 const props = defineProps<{
   open: boolean
