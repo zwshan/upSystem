@@ -253,3 +253,24 @@ upSystem/
 - 蓝色主色调，浅灰背景
 - 大量留白，清晰的信息层级
 - 平滑过渡动画
+
+## 前端优先实施状态（2026-03-03）
+
+### 前端已完成（Mock 数据驱动）
+
+- Vue 3 + Vite + Pinia + Vue Router 工程搭建
+- 全局布局与 9 个主导航页面骨架
+- Dashboard：倒计时卡片、今日复习摘要、快捷入口
+- QuestionManager：筛选、题目表格、编辑抽屉（前端状态）
+- AnswerSheet：左材料右作答布局、GridPaper、Timer
+- ExamSimulation / TargetedPractice：开始会话、题目流转、交卷/结束入口
+- ReviewCenter / NoteManager / Statistics / Settings 页面可用版本
+- Repository 抽象层：`mock` / `api` 可切换（`VITE_DATA_MODE`）
+- 单测 + 构建 + Playwright 冒烟验证链路
+
+### 后端待联调
+
+- 按模块 API 契约对齐（字段命名、分页、错误码）
+- 将 `ApiRepository` 从占位实现替换为真实 HTTP 调用
+- 接入 FastAPI 路由：questions/exams/answers/review/notes/stats/countdown/backup
+- 完成前后端联调清单：`docs/plans/2026-03-03-frontend-backend-integration-checklist.md`
