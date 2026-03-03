@@ -9,7 +9,7 @@ from core.errors import (
     validation_exception_handler,
 )
 from database import Base, engine
-from routers import countdown, review
+from routers import countdown, questions, review
 
 app = FastAPI(title='upSystem Backend')
 
@@ -29,6 +29,7 @@ Base.metadata.create_all(bind=engine)
 
 app.include_router(countdown.router)
 app.include_router(review.router)
+app.include_router(questions.router)
 
 
 @app.get('/api/v1/health')
