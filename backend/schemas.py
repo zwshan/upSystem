@@ -127,3 +127,24 @@ class ReviewItemRead(BaseModel):
 
 class ReviewGradeRequest(BaseModel):
     grade: int
+
+
+class NoteCreate(BaseModel):
+    title: str
+    content: str
+    tags: list[str] = []
+
+
+class NoteUpdate(BaseModel):
+    title: str | None = None
+    content: str | None = None
+    tags: list[str] | None = None
+
+
+class NoteRead(BaseModel):
+    id: int
+    title: str
+    content: str
+    tags: list[str]
+    created_at: datetime
+    updated_at: datetime
