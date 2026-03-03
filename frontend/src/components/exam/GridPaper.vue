@@ -48,7 +48,9 @@ function onInput(event: Event) {
       :value="inputValue"
       @input="onInput"
       aria-label="answer-input"
+      placeholder="在这里录入答案，方格将同步显示..."
     />
+
     <div class="grid">
       <span
         v-for="(cell, index) in cells"
@@ -59,6 +61,7 @@ function onInput(event: Event) {
         {{ cell }}
       </span>
     </div>
+
     <p class="counter">{{ inputValue.length }} / {{ props.wordLimit }}</p>
   </section>
 </template>
@@ -71,27 +74,31 @@ function onInput(event: Event) {
 
 .hidden-input {
   min-height: 110px;
-  width: 100%;
+  resize: vertical;
 }
 
 .grid {
-  border: 1px solid #dce5f2;
+  border: 1px solid var(--stroke-soft);
+  border-radius: 10px;
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(25, minmax(0, 1fr));
+  background: #fff;
 }
 
 .cell {
-  border-bottom: 1px solid #edf2f9;
-  border-right: 1px solid #edf2f9;
-  font-size: 12px;
+  border-right: 1px solid rgba(16, 24, 40, 0.06);
+  border-bottom: 1px solid rgba(16, 24, 40, 0.06);
   height: 22px;
   line-height: 22px;
   text-align: center;
+  font-size: 12px;
+  color: #2a3446;
 }
 
 .counter {
-  color: var(--text-muted);
-  margin: 0;
+  color: var(--text-secondary);
   text-align: right;
+  font-size: 13px;
 }
 </style>

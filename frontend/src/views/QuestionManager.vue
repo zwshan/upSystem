@@ -4,27 +4,31 @@ import QuestionTable from '@/components/questions/QuestionTable.vue'
 import { useQuestionsStore } from '@/stores/questions'
 
 const store = useQuestionsStore()
-
 const categoryOptions = ['全部', '案例分析', '公文写作', '策论文']
 </script>
 
 <template>
   <section class="layout">
     <header class="toolbar card">
-      <label>
-        题型筛选
-        <select v-model="store.categoryFilter" data-testid="category-filter">
-          <option v-for="option in categoryOptions" :key="option" :value="option">
-            {{ option }}
-          </option>
-        </select>
-      </label>
-      <button type="button" class="primary-btn" @click="store.openCreateDrawer">
+      <div class="filter-wrap">
+        <p class="eyebrow">Question Library</p>
+        <label class="filter-label">
+          题型筛选
+          <select v-model="store.categoryFilter" data-testid="category-filter">
+            <option v-for="option in categoryOptions" :key="option" :value="option">
+              {{ option }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <button type="button" class="btn btn-primary" @click="store.openCreateDrawer">
         新建题目
       </button>
     </header>
 
     <QuestionTable :items="store.filteredQuestions" @edit="store.openEditDrawer" />
+
     <QuestionEditorDrawer
       :open="store.drawerOpen"
       :question="store.activeQuestion"
@@ -40,22 +44,29 @@ const categoryOptions = ['全部', '案例分析', '公文写作', '策论文']
 }
 
 .toolbar {
-  align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 12px;
+  align-items: end;
+  gap: 14px;
+  padding: 16px;
 }
 
-select {
-  margin-left: 8px;
+.filter-wrap {
+  display: grid;
+  gap: 6px;
 }
 
-.primary-btn {
-  background: var(--accent-strong);
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  padding: 8px 12px;
+.filter-label {
+  display: grid;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
 }
 </style>

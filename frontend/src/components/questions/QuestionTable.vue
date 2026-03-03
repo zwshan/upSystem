@@ -48,25 +48,31 @@ const emit = defineEmits<{
 <style scoped>
 .table-wrap {
   overflow: auto;
-  padding: 8px;
+  padding: 8px 10px;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
+tbody tr {
+  transition: background-color 0.2s ease;
 }
 
-th,
-td {
-  border-bottom: 1px solid #e7edf6;
-  padding: 10px;
-  text-align: left;
+tbody tr:hover {
+  background: rgba(10, 132, 255, 0.06);
 }
 
 .text-btn {
-  background: transparent;
-  border: none;
-  color: var(--accent-strong);
+  appearance: none;
+  border: 1px solid var(--stroke-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a56a5;
   cursor: pointer;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.text-btn:hover {
+  border-color: rgba(10, 132, 255, 0.28);
+  background: rgba(10, 132, 255, 0.1);
 }
 </style>

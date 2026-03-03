@@ -7,17 +7,24 @@ const store = useNotesStore()
 <template>
   <section class="layout">
     <article class="card note-list">
-      <h2>知识点笔记</h2>
+      <p class="eyebrow">Knowledge Base</p>
+      <h2 class="section-title">知识点笔记</h2>
       <ul>
         <li v-for="note in store.notes" :key="note.id">
-          <button type="button" @click="store.setActive(note.id)">{{ note.title }}</button>
+          <button type="button" class="note-item" @click="store.setActive(note.id)">
+            {{ note.title }}
+          </button>
         </li>
       </ul>
     </article>
 
     <article class="card editor">
       <h3>{{ store.activeNote?.title }}</h3>
-      <textarea :value="store.activeNote?.content" rows="10" />
+      <textarea :value="store.activeNote?.content" rows="12" />
+      <div class="editor-footer">
+        <button type="button" class="btn btn-primary">保存草稿</button>
+        <button type="button" class="btn btn-ghost">导出</button>
+      </div>
     </article>
   </section>
 </template>
@@ -26,38 +33,55 @@ const store = useNotesStore()
 .layout {
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(220px, 1fr) 2fr;
 }
 
 .note-list,
 .editor {
-  padding: 16px;
+  padding: 18px;
 }
 
-ul {
-  margin: 8px 0 0;
-  padding-left: 0;
-}
-
-li {
+.note-list ul {
+  margin: 14px 0 0;
+  padding: 0;
   list-style: none;
-  margin-bottom: 6px;
+  display: grid;
+  gap: 6px;
 }
 
-button {
-  background: #eef4ff;
-  border: 1px solid #cfe0ff;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 6px 8px;
-}
-
-textarea {
-  margin-top: 8px;
+.note-item {
   width: 100%;
+  text-align: left;
+  border: 1px solid var(--stroke-soft);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.68);
+  min-height: 36px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-@media (max-width: 900px) {
+.note-item:hover {
+  border-color: rgba(10, 132, 255, 0.3);
+  transform: translateX(1px);
+}
+
+.editor {
+  display: grid;
+  gap: 10px;
+}
+
+.editor h3 {
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.editor-footer {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 940px) {
   .layout {
     grid-template-columns: 1fr;
   }

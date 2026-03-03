@@ -10,34 +10,31 @@ const props = defineProps<{
   <article class="card panel" data-testid="countdown-card">
     <p class="eyebrow">考试倒计时</p>
     <h3 class="title">{{ props.name }}</h3>
-    <p class="days">{{ props.daysLeft }} 天</p>
-    <p class="meta">目标日期 {{ props.targetDate }}</p>
+    <p class="days value-number">{{ props.daysLeft }}</p>
+    <p class="meta">距离目标日期 {{ props.targetDate }}</p>
   </article>
 </template>
 
 <style scoped>
 .panel {
   padding: 18px;
-}
-
-.eyebrow {
-  color: var(--text-muted);
-  margin: 0;
+  display: grid;
+  gap: 6px;
 }
 
 .title {
-  margin: 8px 0;
+  font-size: 18px;
+  letter-spacing: -0.02em;
 }
 
 .days {
+  font-size: clamp(34px, 4.5vw, 46px);
   color: var(--accent-strong);
-  font-size: 34px;
-  font-weight: 700;
-  margin: 0;
+  line-height: 1;
 }
 
 .meta {
-  color: var(--text-muted);
-  margin: 8px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 </style>

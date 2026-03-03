@@ -11,8 +11,10 @@ const selectedCategory = ref('案例分析')
 <template>
   <section class="layout">
     <article v-if="!store.inSession || store.sessionMode !== 'targeted'" class="card setup">
-      <h2>专项练习</h2>
-      <label>
+      <p class="eyebrow">Focused Drill</p>
+      <h2 class="section-title">专项练习</h2>
+
+      <label class="field">
         一级题型
         <select v-model="selectedCategory">
           <option>案例分析</option>
@@ -20,52 +22,52 @@ const selectedCategory = ref('案例分析')
           <option>策论文</option>
         </select>
       </label>
-      <button type="button" class="primary-btn" @click="store.startTargetedPractice(selectedCategory)">
+
+      <button type="button" class="btn btn-primary" @click="store.startTargetedPractice(selectedCategory)">
         进入作答
       </button>
     </article>
 
     <article v-else class="flow">
       <header class="card flow-header">
-        <strong>专项练习 · {{ selectedCategory }}</strong>
-        <button type="button" @click="store.endSession">结束练习</button>
+        <div>
+          <p class="eyebrow">Current Session</p>
+          <strong>专项练习 · {{ selectedCategory }}</strong>
+        </div>
+        <button type="button" class="btn btn-danger" @click="store.endSession">结束练习</button>
       </header>
+
       <AnswerSheet />
     </article>
   </section>
 </template>
 
 <style scoped>
-.layout {
-  display: grid;
-  gap: 12px;
-}
-
-.setup {
-  display: grid;
-  gap: 12px;
-  max-width: 520px;
-  padding: 16px;
-}
-
+.layout,
 .flow {
   display: grid;
   gap: 12px;
 }
 
-.flow-header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 14px;
+.setup {
+  max-width: 560px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
 }
 
-.primary-btn {
-  background: var(--accent-strong);
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  padding: 10px 14px;
+.field {
+  display: grid;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.flow-header {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 </style>

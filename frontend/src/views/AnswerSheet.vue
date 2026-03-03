@@ -9,8 +9,9 @@ const store = useExamStore()
 <template>
   <section class="answer-layout" data-testid="answer-sheet-entry">
     <aside class="card material-panel">
+      <p class="eyebrow">Material</p>
       <h3>材料区</h3>
-      <p>{{ store.materialText }}</p>
+      <p class="material-copy">{{ store.materialText }}</p>
     </aside>
 
     <article class="card answer-panel">
@@ -28,13 +29,30 @@ const store = useExamStore()
 <style scoped>
 .answer-layout {
   display: grid;
-  gap: 12px;
   grid-template-columns: 2fr 3fr;
+  gap: 12px;
 }
 
 .material-panel,
 .answer-panel {
   padding: 16px;
+}
+
+.material-panel {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.material-copy {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.answer-panel {
+  display: grid;
+  gap: 12px;
 }
 
 @media (max-width: 960px) {

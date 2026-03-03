@@ -8,6 +8,17 @@ const store = useDashboardStore()
 
 <template>
   <section class="dashboard-grid">
+    <article class="card headline">
+      <p class="eyebrow">Mission Control</p>
+      <h2 class="section-title">今天保持一次完整作答 + 一次复盘</h2>
+      <p class="headline-copy">用固定节奏做训练，复盘和错题归档都在一个工作台里完成。</p>
+      <div class="quick-links">
+        <RouterLink to="/exam-simulation" class="btn btn-primary">开始套题仿真</RouterLink>
+        <RouterLink to="/review-center" class="btn btn-ghost">进入复习中心</RouterLink>
+        <RouterLink to="/question-manager" class="btn btn-ghost">管理题目库</RouterLink>
+      </div>
+    </article>
+
     <CountdownCard
       :name="store.countdown.name"
       :target-date="store.countdown.targetDate"
@@ -17,44 +28,37 @@ const store = useDashboardStore()
       :due-today="store.review.dueToday"
       :overdue="store.review.overdue"
     />
-    <article class="card actions">
-      <h3>快捷入口</h3>
-      <div class="links">
-        <RouterLink to="/exam-simulation">开始套题仿真</RouterLink>
-        <RouterLink to="/review-center">进入复习中心</RouterLink>
-        <RouterLink to="/question-manager">管理题目库</RouterLink>
-      </div>
-    </article>
   </section>
 </template>
 
 <style scoped>
 .dashboard-grid {
   display: grid;
-  gap: 12px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.actions {
+.headline {
   grid-column: 1 / -1;
-  padding: 18px;
+  padding: 20px;
+  display: grid;
+  gap: 10px;
 }
 
-.actions h3 {
-  margin: 0 0 12px;
+.headline-copy {
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.6;
 }
 
-.links {
+.quick-links {
   display: flex;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
 }
 
-.links a {
-  color: var(--accent-strong);
-  text-decoration: none;
-}
-
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }

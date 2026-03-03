@@ -8,8 +8,10 @@ const store = useExamStore()
 <template>
   <section class="layout">
     <article v-if="!store.inSession" class="card setup">
-      <h2>套题仿真</h2>
-      <label>
+      <p class="eyebrow">Simulation</p>
+      <h2 class="section-title">套题仿真</h2>
+
+      <label class="field">
         选择套卷
         <select v-model.number="store.activePaperId">
           <option v-for="paper in store.papers" :key="paper.id" :value="paper.id">
@@ -17,59 +19,71 @@ const store = useExamStore()
           </option>
         </select>
       </label>
-      <button type="button" class="primary-btn" data-testid="start-exam-btn" @click="store.startSimulation">
+
+      <button type="button" class="btn btn-primary" data-testid="start-exam-btn" @click="store.startSimulation">
         开始仿真
       </button>
     </article>
 
     <article v-else class="flow">
       <header class="card flow-header">
-        <strong>{{ store.activePaper?.title }}</strong>
-        <span>
-          第 {{ store.currentQuestionIndex + 1 }} 题 / {{ store.activePaper?.questions.length }}
-        </span>
         <div>
-          <button type="button" @click="store.prevQuestion">上一题</button>
-          <button type="button" @click="store.nextQuestion">下一题</button>
-          <button type="button" @click="store.endSession">交卷</button>
+          <p class="eyebrow">Current Paper</p>
+          <strong>{{ store.activePaper?.title }}</strong>
+        </div>
+
+        <span class="progress">第 {{ store.currentQuestionIndex + 1 }} 题 / {{ store.activePaper?.questions.length }}</span>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" @click="store.prevQuestion">上一题</button>
+          <button type="button" class="btn btn-ghost" @click="store.nextQuestion">下一题</button>
+          <button type="button" class="btn btn-danger" @click="store.endSession">交卷</button>
         </div>
       </header>
+
       <AnswerSheet />
     </article>
   </section>
 </template>
 
 <style scoped>
-.layout {
-  display: grid;
-  gap: 12px;
-}
-
-.setup {
-  display: grid;
-  gap: 12px;
-  max-width: 520px;
-  padding: 16px;
-}
-
+.layout,
 .flow {
   display: grid;
   gap: 12px;
 }
 
-.flow-header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 14px;
+.setup {
+  max-width: 560px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
 }
 
-.primary-btn {
-  background: var(--accent-strong);
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  padding: 10px 14px;
+.field {
+  display: grid;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.flow-header {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.progress {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 </style>

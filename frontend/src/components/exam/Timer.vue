@@ -20,24 +20,41 @@ const formatted = computed(() => {
 
 <template>
   <div class="timer" data-testid="timer">
-    <strong>{{ formatted }}</strong>
     <div>
-      <button type="button" @click="emit('start')">开始</button>
-      <button type="button" @click="emit('pause')">暂停</button>
-      <button type="button" @click="emit('reset')">重置</button>
+      <p class="eyebrow">Timer</p>
+      <strong class="clock value-number">{{ formatted }}</strong>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn-ghost" @click="emit('start')">开始</button>
+      <button type="button" class="btn btn-ghost" @click="emit('pause')">暂停</button>
+      <button type="button" class="btn btn-ghost" @click="emit('reset')">重置</button>
     </div>
   </div>
 </template>
 
 <style scoped>
 .timer {
-  align-items: center;
   display: flex;
-  gap: 10px;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(16, 24, 40, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
-button {
-  margin-left: 6px;
+.clock {
+  margin-top: 3px;
+  display: inline-block;
+  font-size: clamp(24px, 3vw, 30px);
+  letter-spacing: -0.03em;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 </style>

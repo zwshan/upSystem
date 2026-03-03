@@ -17,35 +17,41 @@ const drawerTitle = computed(() => (props.question ? '编辑题目' : '新建题
 
 <template>
   <aside v-if="props.open" class="drawer card" data-testid="question-editor-drawer">
-    <header>
-      <h3>{{ drawerTitle }}</h3>
-      <button type="button" class="text-btn" @click="emit('close')">关闭</button>
+    <header class="drawer-header">
+      <div>
+        <p class="eyebrow">Editor</p>
+        <h3>{{ drawerTitle }}</h3>
+      </div>
+      <button type="button" class="btn btn-ghost" @click="emit('close')">关闭</button>
     </header>
+
     <p class="desc">MVP 阶段仅实现前端状态，后续接入后端保存。</p>
   </aside>
 </template>
 
 <style scoped>
 .drawer {
-  margin-top: 12px;
-  padding: 14px;
+  margin-top: 2px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
 }
 
-header {
-  align-items: center;
+.drawer-header {
   display: flex;
   justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+
+h3 {
+  margin-top: 4px;
+  font-size: 20px;
+  letter-spacing: -0.02em;
 }
 
 .desc {
-  color: var(--text-muted);
-  margin: 8px 0 0;
-}
-
-.text-btn {
-  background: transparent;
-  border: none;
-  color: var(--accent-strong);
-  cursor: pointer;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 </style>
