@@ -8,6 +8,8 @@ from core.errors import (
     unhandled_exception_handler,
     validation_exception_handler,
 )
+from database import Base, engine
+from routers import countdown, review
 
 app = FastAPI(title='upSystem Backend')
 
@@ -22,6 +24,11 @@ app.add_middleware(
 app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(Exception, unhandled_exception_handler)
+
+Base.metadata.create_all(bind=engine)
+
+app.include_router(countdown.router)
+app.include_router(review.router)
 
 
 @app.get('/api/v1/health')
