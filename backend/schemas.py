@@ -113,3 +113,17 @@ class AnswerRead(BaseModel):
     mode: str
     self_score: float | None
     reflection: str | None
+
+
+class ReviewItemRead(BaseModel):
+    id: int
+    type: str
+    reference_id: int
+    next_review_at: datetime
+    review_count: int
+    ease_factor: float
+    last_reviewed_at: datetime | None
+
+
+class ReviewGradeRequest(BaseModel):
+    grade: int
