@@ -1,0 +1,12 @@
+:root {
+  --theme-bg-solid: #1e1e1e;
+  --theme-surface-glass: rgba(37, 37, 38, 0.58);
+  --theme-border-glass: rgba(255, 255, 255, 0.14);
+  --theme-text-primary: #d4d4d4;
+  --theme-text-secondary: #9da1a6;
+  --theme-shadow-elevated: 0 26px 64px rgba(0, 0, 0, 0.42);
+}
+
+[data-theme="glass-dark"] {
+  color: var(--theme-text-primary);
+}

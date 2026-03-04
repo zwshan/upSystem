@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>团圆学习平台</title>
+    <style>
+      :root {
+        --bg-solid: #1e1e1e;
+        --glass-bg: rgba(37, 37, 38, 0.58);
+        --glass-border: rgba(255, 255, 255, 0.14);
+        --text-main: #d4d4d4;
+        --text-muted: #9da1a6;
+        --shadow: 0 26px 64px rgba(0, 0, 0, 0.42);
+        --radius-lg: 28px;
+        --radius-md: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+        color: var(--text-main);
+      }
+
+      body {
+        background: var(--bg-solid);
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .noise {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.08;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.4) 0.4px, transparent 0.4px);
+        background-size: 2px 2px;
+      }
+
+      .shell {
+        position: relative;
+        width: min(1400px, 100vw);
+        min-height: 100vh;
+        padding: 28px clamp(18px, 4vw, 50px) 44px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .top-nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .top-nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        letter-spacing: 0.01em;
+        color: var(--text-muted);
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(16px) saturate(140%);
+        transition: all 180ms ease;
+      }
+
+      .top-nav a:hover {
+        color: var(--text-main);
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.24);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .hero {
+        flex: 1;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-inner {
+        width: min(960px, 100%);
+        text-align: center;
+        animation: rise-in 620ms cubic-bezier(0.21, 0.92, 0.31, 1) both;
+      }
+
+      .title {
+        margin: 0;
+        font-size: clamp(30px, 4.4vw, 58px);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      .subtitle {
+        margin: 14px auto 0;
+        max-width: 640px;
+        font-size: clamp(14px, 1.9vw, 18px);
+        line-height: 1.7;
+        color: var(--text-muted);
+      }
+
+      .actions {
+        margin-top: clamp(32px, 6vh, 58px);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(220px, 320px));
+        gap: clamp(16px, 3vw, 28px);
+        justify-content: center;
+      }
+
+      .primary-btn {
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+          var(--glass-bg);
+        backdrop-filter: blur(22px) saturate(130%);
+        box-shadow: var(--shadow);
+        min-height: clamp(150px, 24vh, 220px);
+        padding: 22px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 30px 58px rgba(0, 0, 0, 0.52);
+        border-color: rgba(255, 255, 255, 0.32);
+      }
+
+      .primary-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .primary-btn .name {
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1;
+        color: #f2f2f2;
+      }
+
+      .primary-btn .desc {
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--text-muted);
+      }
+
+      .footer-tip {
+        margin-top: auto;
+        text-align: center;
+        font-size: 12px;
+        color: #8f949c;
+        letter-spacing: 0.02em;
+      }
+
+      @keyframes rise-in {
+        from {
+          transform: translateY(12px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .shell {
+          padding-top: 16px;
+        }
+
+        .top-nav {
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .top-nav a {
+          height: 34px;
+          padding: 0 12px;
+        }
+
+        .actions {
+          grid-template-columns: 1fr;
+          width: min(480px, 100%);
+          margin-inline: auto;
+        }
+
+        .primary-btn {
+          min-height: 140px;
+          border-radius: var(--radius-md);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="shell">
+      <nav class="top-nav" aria-label="secondary navigation">
+        <a href="#" aria-label="设置">设置</a>
+        <a href="#" aria-label="题库管理">题库管理</a>
+        <a href="#" aria-label="备份">备份</a>
+      </nav>
+
+      <main class="hero">
+        <section class="hero-inner" aria-label="primary actions">
+          <h1 class="title">团圆学习平台</h1>
+          <p class="subtitle">保持注意力在最核心的两件事上：稳定刷题，按节奏复习。</p>
+
+          <div class="actions">
+            <button class="primary-btn" type="button" aria-label="刷题">
+              <span class="name">刷题</span>
+              <span class="desc">随机或按条件抽题，快速进入答题状态。</span>
+            </button>
+            <button class="primary-btn" type="button" aria-label="复习">
+              <span class="name">复习</span>
+              <span class="desc">按到期队列复习，自评 0-5 自动安排下次节奏。</span>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div class="footer-tip">Local-first • Fullscreen-ready • Glass UI</div>
+    </div>
+  </body>
+</html>

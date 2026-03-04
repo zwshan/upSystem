@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String            @id @default(cuid())
+  email            String            @unique
+  passwordHash     String
+  createdAt        DateTime          @default(now())
+  reviewCards      ReviewCard[]
+  practiceSessions PracticeSession[]
+}
+
+model QuestionBank {
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime   @default(now())
+  questions   Question[]
+}
+
+model QuestionTypeDict {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  isBuiltin Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Question {
+  id              String            @id @default(cuid())
+  bankId          String
+  summary         String
+  prompt          String
+  referenceAnswer String?
+  scoreValue      Int
+  wordLimit       String
+  questionType    String
+  tags            Json?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  bank            QuestionBank      @relation(fields: [bankId], references: [id], onDelete: Cascade)
+  materials       QuestionMaterial[]
+  reviewCards     ReviewCard[]
+  practiceLogs    PracticeItemLog[]
+}
+
+model QuestionMaterial {
+  id         String   @id @default(cuid())
+  questionId String
+  seq        Int
+  content    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, seq])
+}
+
+model ReviewCard {
+  id          String    @id @default(cuid())
+  questionId  String
+  userId      String
+  stability   Float     @default(0)
+  difficulty  Float     @default(0)
+  lastScore   Int?
+  dueAt       DateTime  @default(now())
+  reviewCount Int       @default(0)
+  lapseCount  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  question    Question  @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  logs        ReviewLog[]
+
+  @@unique([questionId, userId])
+}
+
+model ReviewLog {
+  id           String     @id @default(cuid())
+  reviewCardId String
+  score        Int
+  reviewedAt   DateTime   @default(now())
+  note         String?
+  createdAt    DateTime   @default(now())
+  reviewCard   ReviewCard @relation(fields: [reviewCardId], references: [id], onDelete: Cascade)
+}
+
+model PracticeSession {
+  id          String            @id @default(cuid())
+  userId      String
+  mode        String
+  startedAt   DateTime          @default(now())
+  endedAt     DateTime?
+  durationSec Int?
+  createdAt   DateTime          @default(now())
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items       PracticeItemLog[]
+}
+
+model PracticeItemLog {
+  id         String          @id @default(cuid())
+  sessionId  String
+  questionId String
+  selfScore  Int
+  spentSec   Int?
+  createdAt  DateTime        @default(now())
+  session    PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question   Question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}

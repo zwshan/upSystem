@@ -1,0 +1,383 @@
+.page {
+  min-height: 100vh;
+  background: var(--theme-bg-solid);
+  color: var(--theme-text-primary);
+  padding: 28px clamp(16px, 3vw, 36px);
+}
+
+.shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  border: 1px solid var(--theme-border-glass);
+  background: var(--theme-surface-glass);
+  box-shadow: var(--theme-shadow-elevated);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(16px) saturate(130%);
+}
+
+.title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+}
+
+.toolbar {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr minmax(120px, 170px) auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.search,
+.select,
+.input,
+.textarea {
+  border-radius: 10px;
+  border: 1px solid var(--theme-border-glass);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--theme-text-primary);
+}
+
+.search,
+.select,
+.input {
+  height: 38px;
+  padding: 0 12px;
+}
+
+.select {
+  appearance: none;
+}
+
+.textarea {
+  min-height: 94px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.btn {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--theme-border-glass);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--theme-text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover:enabled {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.sectionTitle {
+  margin: 18px 0 10px;
+  color: var(--theme-text-secondary);
+  font-size: 13px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--theme-border-glass);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 14px;
+}
+
+.table thead {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.empty {
+  margin-top: 12px;
+  color: var(--theme-text-secondary);
+}
+
+.editorPage {
+  min-height: 100vh;
+  background: var(--theme-bg-solid);
+  color: var(--theme-text-primary);
+  padding: 20px clamp(14px, 3vw, 34px);
+}
+
+.editorShell {
+  max-width: 960px;
+  margin: 0 auto;
+  border: 1px solid var(--theme-border-glass);
+  background: var(--theme-surface-glass);
+  box-shadow: var(--theme-shadow-elevated);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(16px) saturate(130%);
+}
+
+.editorHeader {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.editorHeaderText {
+  min-width: 0;
+}
+
+.centerToastWrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 90;
+}
+
+.centerToast {
+  border: 1px solid rgba(115, 201, 145, 0.45);
+  background: rgba(20, 28, 22, 0.95);
+  color: #9be5b5;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.42);
+}
+
+.importMask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  display: grid;
+  place-items: center;
+  z-index: 95;
+}
+
+.importDialog {
+  width: min(760px, 92vw);
+  max-height: 86vh;
+  overflow: auto;
+  border: 1px solid var(--theme-border-glass);
+  background: rgba(30, 30, 30, 0.96);
+  box-shadow: var(--theme-shadow-elevated);
+  border-radius: 16px;
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+}
+
+.importContent {
+  width: min(620px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  text-align: center;
+}
+
+.importTitle {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.importHint {
+  margin: 0;
+  color: var(--theme-text-secondary);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.importField {
+  width: min(560px, 100%);
+  gap: 6px;
+}
+
+.importLabel {
+  font-size: 15px;
+}
+
+.importFileInput {
+  width: min(500px, 100%);
+  margin: 0 auto;
+  font-size: 15px;
+}
+
+.importInfo {
+  margin: 4px 0 0;
+  color: var(--theme-text-secondary);
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.importActions {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.importActionBtn {
+  height: 42px;
+  padding: 0 16px;
+  font-size: 15px;
+}
+
+.importReport {
+  width: min(560px, 100%);
+  margin-top: 10px;
+  border: 1px solid var(--theme-border-glass);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 12px;
+}
+
+.importStats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 15px;
+  color: var(--theme-text-secondary);
+}
+
+.importErrors {
+  width: fit-content;
+  margin: 10px auto 0;
+  padding-left: 18px;
+  text-align: left;
+  color: #f4a89a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.importFeedback {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.drawerMask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 40;
+}
+
+.drawer {
+  width: min(700px, 92vw);
+  height: 100%;
+  overflow: auto;
+  padding: 18px 18px 24px;
+  border-left: 1px solid var(--theme-border-glass);
+  background: rgba(30, 30, 30, 0.95);
+  box-shadow: -10px 0 48px rgba(0, 0, 0, 0.45);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.drawerTitle {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+
+.drawerHint,
+.drawerInfo {
+  margin: 6px 0 0;
+  color: var(--theme-text-secondary);
+  font-size: 13px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--theme-text-secondary);
+}
+
+.dualFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.inlineRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.formError,
+.formSuccess {
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+.formError {
+  color: #f48771;
+}
+
+.formSuccess {
+  color: #73c991;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .dualFields {
+    grid-template-columns: 1fr;
+  }
+
+  .drawer {
+    width: 100%;
+  }
+}
