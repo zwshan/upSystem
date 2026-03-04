@@ -1,6 +1,0 @@
-.worktrees/
-.conda/
-backend/.venv/
-__pycache__/
-backend/data/*.db
-backend/data/backups/
